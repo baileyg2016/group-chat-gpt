@@ -31,8 +31,12 @@ messages["Date"] = pd.to_datetime(messages["Message Date"])
 
 # Group the dataframe by Message Date (date only)
 groupedMessages = messages.groupby(messages["Date"].dt.date)
+messages["Content"] = messages["Sender Name"].str.cat(messages["Text"], sep=": ")
 
 members = messages["Sender Name"].unique()
+
+# half = len(messages) // 2
+# secondHalf = messages[half:]
 
 for date, group in groupedMessages:
 
